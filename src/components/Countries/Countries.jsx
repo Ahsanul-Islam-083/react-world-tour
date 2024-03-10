@@ -20,9 +20,17 @@ const Countries = () => {
         setVisitedCountries(newVisitedCountries);
     }
 
+    const handleVisitedFlags = flag =>{
+        const newVisitedFlags = [...visitedflags,flag];
+        setVisitedFlags(newVisitedFlags);
+    }
+    // remove Item from an array in a state
+    // use filter to select all the elements expect the one you want to remove
+
     return (
         <div>
             <h3>Countries : {countries.length}</h3>
+            {/* visited countries */}
             <div>
                 <h5>Visited countries : {visitedCountries.length}</h5>
                 <ol>
@@ -31,11 +39,18 @@ const Countries = () => {
         }
                 </ol>
             </div>
+            <div className="flag-container">
+            {
+                visitedflags.map((flag,idx)=><img key={idx} src={flag}></img>)
+            }
+            </div>
+            {/* display countries */}
             <div className="country-container">
                 {
                     countries.map(country => <Country
                         key={country.cca3}
                         handleVisitedCountry={handleVisitedCountry}
+                        handleVisitedFlags={handleVisitedFlags}
                         country={country}></Country>)
                 }
             </div>
